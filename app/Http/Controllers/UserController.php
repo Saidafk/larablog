@@ -90,5 +90,18 @@ public function update(Request $request, Article $article)
     return redirect()->route('dashboard')->with('success', 'Article mis à jour !');
 }
 
+public function remove(Article $article){
+
+    
+    if ($article->user_id !== Auth::user()->id) {
+        abort(403);
+    }
+
+    $article->delete();
+
+    return redirect()->route('dashboard', [
+        'article' => $article
+    ])->with('success', 'Article supprimé !');
+}
 
 }

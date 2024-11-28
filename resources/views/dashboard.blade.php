@@ -11,6 +11,19 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
 
+                        <!-- Message flash -->
+    @if (session('success'))
+        <div class="bg-green-500 text-white p-4 rounded-lg mt-6 mb-6 text-center">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+    <div class="bg-red-500 text-white p-4 rounded-lg mt-6 mb-6 text-center">
+        {{ session('error') }}
+    </div>
+    @endif
+
                     <!-- Articles -->
                     @if ($articles->isEmpty())
     <p>Aucun article trouvé.</p>
@@ -20,8 +33,18 @@
         <div class="p-6 text-gray-900">
             <h2 class="text-2xl font-bold">Nom de l'article : {{ $article->title }}</h2>
             <p class="text-gray-700">Descriptif de l'article : {{ $article->content}} </p>
-            <a class=primary-button  href="{{ route('articles.edit', $article->id) }}" class="text-red-500 hover:text-red-700"> modifier un article </a>
-            
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+            <a  href="{{ route('articles.edit', $article->id) }}">
+            Modifier
+            </a>
+            </button>
+
+            <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-300">
+            <a href="{{ route('articles.remove', $article->id) }}">
+            Supprimer
+            </a>
+            </button>
 
         </div>
     </div>
@@ -31,7 +54,6 @@
 {{ $articles->links() }}
                     
     </div>
-        <a class=primary-button  href="{{ route('articles.create') }}"> creer un article </a>
         
 
 

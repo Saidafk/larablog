@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+
+
     <form method="post" action="{{ route('articles.update', $article->id) }}" class="py-12">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
