@@ -47,11 +47,16 @@ public function index()
     // On récupère l'utilisateur connecté.
     $user = Auth::user();
 
-    $articles = Article::where('user_id', $user->id)->get();
+    
+
+    $articles = Article::orderBy('created_at', 'desc')->paginate(3);
+
+    
 
     // On retourne la vue.
     return view('dashboard', [
-        'articles' => $articles
+        'articles' => $articles,
+        
     ]);
 }
 
