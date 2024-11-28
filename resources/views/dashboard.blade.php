@@ -20,7 +20,9 @@
         <div class="p-6 text-gray-900">
             <h2 class="text-2xl font-bold">Nom de l'article : {{ $article->title }}</h2>
             <p class="text-gray-700">Descriptif de l'article : {{ $article->content}} </p>
-            <a class=primary-button  href="{{ route('articles.edit') }}"> modifier un article </a>
+            <a class=primary-button  href="{{ route('articles.edit', $article->id) }}" class="text-red-500 hover:text-red-700"> modifier un article </a>
+            
+
         </div>
     </div>
     @endforeach
