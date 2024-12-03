@@ -23,11 +23,11 @@
         {{ session('error') }}
     </div>
     @endif
-
-                    <!-- Articles -->
-                    @if ($articles->isEmpty())
+    <pre>{{ dump($articles) }}</pre>
+    <!-- Articles -->
+    @if ($articles->isEmpty())
     <p>Aucun article trouvé.</p>
-@else
+    @else
     @foreach ($articles as $article)
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4">
         <div class="p-6 text-gray-900">
@@ -49,13 +49,13 @@
         </div>
     </div>
     @endforeach
-@endif
+    @endif
 
 {{ $articles->links() }}
                     
     </div>
-        
-
+    </div>
+   </div>
 
     </div>
     </div>

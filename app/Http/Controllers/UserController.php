@@ -29,6 +29,9 @@ public function store(Request $request)
     // On crée l'article
     $article = Article::create($data); // $Article est l'objet article nouvellement créé
 
+    dd($article);
+
+
     // Exemple pour ajouter la catégorie 1 à l'article
     // $article->categories()->sync(1);
 
@@ -42,12 +45,14 @@ public function store(Request $request)
     return redirect()->route('dashboard');
 }
 
-public function index()
+public function index(Article $article)
 {
     // On récupère l'utilisateur connecté.
     $user = Auth::user();
 
     $articles = Article::orderBy('created_at', 'desc')->paginate(3);
+
+    dd($articles);
 
     // On retourne la vue.
     return view('dashboard', [
@@ -63,6 +68,8 @@ public function edit(Article $article)
     if ($article->user_id !== Auth::user()->id) {
         abort(403);
     }
+
+    dd($articles);
 
     // On retourne la vue avec l'article
     return view('articles.edit', [
@@ -85,6 +92,8 @@ public function update(Request $request, Article $article)
 
     // On met à jour l'article
     $article->update($data);
+
+    dd($articles);
 
     // On redirige l'utilisateur vers la liste des articles (avec un flash)
     return redirect()->route('dashboard')->with('success', 'Article mis à jour !');
