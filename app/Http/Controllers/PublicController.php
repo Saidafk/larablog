@@ -23,9 +23,7 @@ class PublicController extends Controller
     // On récupère les articles publiés de l'utilisateur
     $articles = Article::orderBy('created_at', 'desc')->where('draft', 0 )->paginate(3);
 
-    $user = User::find($user->id);
-
-    //dd($user);
+    //$user = User::find($user->id);
 
     //dd($user);
 

@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/articles/{article}/remove', [UserController::class, 'remove'])->name('articles.remove');
 
-    Route::post('/comments/store', [CommentController::class, 'store'])->name('comments.store');
+    Route::post('/comments/store/{article}', [CommentController::class, 'store'])->name('comments.store');
 
 });
 

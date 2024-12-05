@@ -16,7 +16,7 @@
     </div>
 
     <button class="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
-            <a href="{{ route('public.index', $user->id) }}">
+            <a href="{{ route('public.index', ['user'=>$user->id]) }}">
             Retour
             </a>
             </button>
@@ -31,7 +31,7 @@
         <hr>
         @endforeach 
 
-        <form action="{{ route('comments.store') }}" method="POST">
+        <form action="{{ route('comments.store', ['article' => $article->id] ) }}" method="POST">
         @csrf <!-- Protection CSRF -->
 
         <div>
@@ -40,14 +40,7 @@
             
         </div>
         <div>
-
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
-                    <a  href="{{ route('comments.store', $user->id) }}">
-                    Envoyer
-                    </a>
-                    </button>
-
-
+            <button type="submit">Envoyer</button>
         </div>
     </form>
 

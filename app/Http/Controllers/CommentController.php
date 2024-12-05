@@ -11,17 +11,24 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
 
-    public function store (User $user, Article $article){
+    public function store (Request $request,Article $article){
 
 
-        dd($article->comment);
+        //dd($article->comments->content);
+
+        $content = request('content');
+        $articleId = $article->id;
+        //dd($article);
+
+        
         Comment::create([
             'content' => $content,
             'article_id' => $articleId,
             'user_id' => Auth::user()->id
         ]);
 
-        return view('public.detail' , ['article' => $article, 'user' => $user]);
+        
+        return view('public.detail' , ['article' => $article, 'user' => Auth::user()]);
     }
 
 
