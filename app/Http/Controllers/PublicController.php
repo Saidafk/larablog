@@ -10,15 +10,22 @@ use Illuminate\Support\Facades\Redirect;
 
 class PublicController extends Controller
 {
+    public function dashboard(User $user){
+
+        $articles = Article::orderBy('created_at', 'desc')->paginate(3);
+        
+        return view('dashboard',['user' => $user, 'articles' => $articles]);
+    }
+
     public function index(User $user)
 {
     
     // On récupère les articles publiés de l'utilisateur
     $articles = Article::orderBy('created_at', 'desc')->where('draft', 0 )->paginate(3);
 
-    
-
     $user = User::find($user->id);
+
+    //dd($user);
 
     //dd($user);
 

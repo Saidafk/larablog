@@ -69,7 +69,7 @@ public function edit(Article $article)
         abort(403);
     }
 
-    dd($articles);
+    //dd($articles);
 
     // On retourne la vue avec l'article
     return view('articles.edit', [
@@ -93,7 +93,7 @@ public function update(Request $request, Article $article)
     // On met à jour l'article
     $article->update($data);
 
-    dd($articles);
+    
 
     // On redirige l'utilisateur vers la liste des articles (avec un flash)
     return redirect()->route('dashboard')->with('success', 'Article mis à jour !');

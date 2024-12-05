@@ -35,12 +35,19 @@
         @csrf <!-- Protection CSRF -->
 
         <div>
-            <label for="content">Taper votre msg ici !!!</label>
-            <input type="content" name="content" id="content">
+            <x-input-label for="content" :value="__('Message')" />
+            <x-text-input id="content" class="block mt-1 w-full" type="text" name="content" :value="old('content')" />
+            
         </div>
-
         <div>
-            <button type="submit">Envoyer</button>
+
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+                    <a  href="{{ route('comments.store', $user->id) }}">
+                    Envoyer
+                    </a>
+                    </button>
+
+
         </div>
     </form>
 
