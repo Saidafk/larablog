@@ -52,8 +52,8 @@ public function index()
     // On retourne la vue.
     return view('dashboard', [
         'articles' => $articles,
-        
-        
+        'user' => $user
+            
     ]);
 }
 

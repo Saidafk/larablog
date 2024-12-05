@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -13,7 +14,9 @@ class PublicController extends Controller
 {
     
     // On récupère les articles publiés de l'utilisateur
-    $articles = Article::orderBy('created_at', 'desc')->paginate(3);
+    $articles = Article::orderBy('created_at', 'desc')->where('draft', 0 )->paginate(3);
+
+    
 
     $user = User::find($user->id);
 
@@ -31,7 +34,9 @@ public function show(User $user, Article $article)
 
     $user = User::find($user->id);
 
-    if ($article->draft == 0){
+    //dd($article->comments);
+
+    if ($article->draft == 0){  
 
         return view('public.detail' , ['article' => $article, 'user' => $user]);
     }

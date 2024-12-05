@@ -21,5 +21,28 @@
             </a>
             </button>
 
+            @foreach ($article->comments as $comments)
+        <div>
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+            <h2 class="text-2xl font-bold">{{ $comments->user->name }}</h2>
+            <h2 class="text-2xl font-bold">{{ $comments->content }}</h2>
+            </div>
+        </div>
+        <hr>
+        @endforeach 
+
+        <form action="{{ route('comments.store') }}" method="POST">
+        @csrf <!-- Protection CSRF -->
+
+        <div>
+            <label for="content">Taper votre msg ici !!!</label>
+            <input type="content" name="content" id="content">
+        </div>
+
+        <div>
+            <button type="submit">Envoyer</button>
+        </div>
+    </form>
+
 
 </x-guest-layout>
