@@ -5,6 +5,18 @@
         </h2>
     </x-slot>
 
+    @if (session('success'))
+        <div class="bg-green-500 text-white p-4 rounded-lg mt-6 mb-6 text-center">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+    <div class="bg-red-500 text-white p-4 rounded-lg mt-6 mb-6 text-center">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <form method="post" action="{{ route('articles.store') }}" class="py-12">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

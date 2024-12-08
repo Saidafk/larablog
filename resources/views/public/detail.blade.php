@@ -37,10 +37,11 @@
         <div>
             <x-input-label for="content" :value="__('Message')" />
             <x-text-input id="content" class="block mt-1 w-full" type="text" name="content" :value="old('content')" />
-            
+      
         </div>
         <div>
-            <button type="submit">Envoyer</button>
+             <button class="bg-black text-white py-2 px-4 rounded hover:bg-gray-800"
+             type="submit">Envoyer</button>
         </div>
     </form>
 

@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function create()
 {
-    return view('articles.create');
+    return view('articles.create')->with('success', 'Nouvelle article ajouté !');
 }
 
 
@@ -29,20 +29,7 @@ public function store(Request $request)
     // On crée l'article
     $article = Article::create($data); // $Article est l'objet article nouvellement créé
 
-    dd($article);
-
-
-    // Exemple pour ajouter la catégorie 1 à l'article
-    // $article->categories()->sync(1);
-
-    // Exemple pour ajouter des catégories à l'article
-    // $article->categories()->sync([1, 2, 3]);
-
-    // Exemple pour ajouter des catégories à l'article en venant du formulaire
-    // $article->categories()->sync($request->input('categories'));
-
-    // On redirige l'utilisateur vers la liste des articles
-    return redirect()->route('dashboard');
+    return redirect()->route('dashboard')->with('success', 'Nouvelle article ajouté !');
 }
 
 public function index(Article $article)
@@ -50,16 +37,17 @@ public function index(Article $article)
     // On récupère l'utilisateur connecté.
     $user = Auth::user();
 
-    $articles = Article::orderBy('created_at', 'desc')->paginate(3);
+    if ($article->user_id !== Auth::user()->id) {
+        abort(403);
+    }
 
-    dd($articles);
+    $articles = Article::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(3);
 
     // On retourne la vue.
     return view('dashboard', [
         'articles' => $articles,
         'user' => $user
-            
-    ]);
+            ])->with('success', 'Nouvelle article ajouté !');
 }
 
 public function edit(Article $article)
@@ -69,7 +57,6 @@ public function edit(Article $article)
         abort(403);
     }
 
-    //dd($articles);
 
     // On retourne la vue avec l'article
     return view('articles.edit', [

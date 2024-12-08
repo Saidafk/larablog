@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}  
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+                    <button class="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
                     <a  href="{{ route('public.index', Auth::user()->id) }}">
                     Page articles
                     </a>
@@ -36,7 +36,7 @@
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4">
         <div class="p-6 text-gray-900">
             <h2 class="text-2xl font-bold">Nom de l'article : {{ $article->title }}</h2>
-            <p class="text-gray-700">Descriptif de l'article : {{ $article->content}} </p>
+            <p class="text-gray-700">Descriptif de l'article : {{ substr($article->content, 0, 30)}}... </p>
 
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
             <a  href="{{ route('articles.edit', $article->id) }}">

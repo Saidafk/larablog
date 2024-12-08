@@ -32,4 +32,11 @@
         @endforeach      
     </div>
     {{ $articles->links() }}
+    <div class="flex justify-center items-center mt-8 mb-6">
+        <button class="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
+            <a href="{{ route('dashboard') }}">
+                Voir votre dashboard
+            </a>
+        </button>
+    </div>
 </x-guest-layout>
